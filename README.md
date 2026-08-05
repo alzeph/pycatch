@@ -4,6 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](pyproject.toml)
 
+> **Release candidate.** `pycatch` est en `1.0.0rc1` : l'API est considérée
+> figée mais n'a pas encore été éprouvée par un usage réel en dehors de ce
+> dépôt. Les retours (issues, cas d'usage, bugs) sont les bienvenus avant
+> de tagger la version `1.0.0` finale — voir [RELEASING.md](RELEASING.md).
+
 Gestion d'erreurs fluide pour Python, inspirée du type `Result` de Rust.
 
 `pycatch` expose `Result`, `Ok`, `Err` et un décorateur `catch` pour éviter
@@ -114,6 +119,16 @@ Le package est entièrement typé (`py.typed`, `mypy --strict`), avec des
 génériques modernes (PEP 695, Python 3.12+). Le décorateur `catch` préserve
 la signature de la fonction décorée grâce à `ParamSpec`.
 
+## Compatibilité
+
+`pycatch` nécessite **Python 3.12+**. C'est un choix assumé, pas un oubli :
+`Ok`/`Err`/`Result` utilisent la syntaxe générique moderne de
+[PEP 695](https://peps.python.org/pep-0695/) (`class Ok[T]`,
+`type Result[T, E] = ...`), qui n'existe pas avant 3.12. Supporter 3.10/3.11
+demanderait de réécrire ces génériques avec `Generic[T]`/`TypeVar` — ce
+n'est pas prévu à court terme, mais une contribution est bienvenue si ce
+besoin se fait sentir.
+
 ## Développement
 
 ```bash
@@ -124,8 +139,9 @@ uv run mypy
 uv run pytest --cov=pycatch --cov-report=term-missing
 ```
 
-Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour contribuer et
-[CHANGELOG.md](CHANGELOG.md) pour l'historique des versions.
+Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour contribuer,
+[CHANGELOG.md](CHANGELOG.md) pour l'historique des versions, et
+[RELEASING.md](RELEASING.md) pour le process de publication.
 
 ## Licence
 
