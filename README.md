@@ -124,6 +124,9 @@ uv run mypy
 uv run pytest --cov=pycatch --cov-report=term-missing
 ```
 
+Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour contribuer et
+[CHANGELOG.md](CHANGELOG.md) pour l'historique des versions.
+
 ## Licence
 
 [MIT](LICENSE)
