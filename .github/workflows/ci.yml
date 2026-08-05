@@ -40,7 +40,7 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync --locked --python ${{ matrix.python-version }}
-      - run: uv run pytest
+      - run: uv run pytest --cov=pycatch --cov-report=term-missing --cov-fail-under=100
 
   build:
     runs-on: ubuntu-latest
