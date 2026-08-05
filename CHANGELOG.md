@@ -7,7 +7,11 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-08-05
+## [1.0.0rc1] - 2026-08-05
+
+Première version publique (release candidate). Aucune version antérieure
+n'a été publiée sur PyPI — le développement `0.x` est resté interne à ce
+dépôt.
 
 ### Added
 
@@ -24,5 +28,5 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
   attendue est absente.
 - Package entièrement typé (`py.typed`, `mypy --strict`, génériques PEP 695).
 
-[Unreleased]: https://github.com/alzeph/pycatch/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/alzeph/pycatch/releases/tag/v0.1.0
+[Unreleased]: https://github.com/alzeph/pycatch/compare/v1.0.0rc1...HEAD
+[1.0.0rc1]: https://github.com/alzeph/pycatch/releases/tag/v1.0.0rc1

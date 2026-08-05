@@ -8,7 +8,7 @@ license = "MIT"
 authors = [{ name = "Cédric Hervé Youan", email = "hervecedricyouan@gmail.com" }]
 keywords = ["result", "error-handling", "rust", "functional", "railway-oriented-programming", "python", "decorator", "exception"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
