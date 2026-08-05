@@ -67,7 +67,7 @@ class Err[E]:
     def map_err[F](self, fn: Callable[[E], F]) -> Err[F]:
         return Err(fn(self.error))
 
-    def and_then[T, U](self, fn: Callable[[T], Result[U, E]]) -> Err[E]:
+    def and_then[T, U, F](self, fn: Callable[[T], Result[U, F]]) -> Err[E]:
         return self
 
     def __repr__(self) -> str:

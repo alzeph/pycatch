@@ -35,6 +35,21 @@ def test_and_then_chains_result_type() -> None:
     assert_type(chained, Result[int, str])
 
 
+def test_and_then_accumulates_heterogeneous_error_types() -> None:
+    """`Err(...).and_then(fn)` court-circuite : le type d'erreur de `fn` ne
+    doit pas contraindre celui de l'`Err` d'origine, sinon on ne peut plus
+    chaîner des étapes qui échouent avec des erreurs différentes — le cas
+    d'usage central de `and_then`.
+    """
+
+    def step(n: int) -> Result[int, KeyError]:
+        return Ok(n) if n >= 0 else Err(KeyError("negative"))
+
+    res: Result[int, ValueError] = Err(ValueError("boom"))
+    chained = res.and_then(step)
+    assert_type(chained, Result[int, KeyError] | Err[ValueError])
+
+
 def test_unwrap_or_returns_success_type() -> None:
     res: Result[int, str] = Ok(1)
     assert_type(res.unwrap_or(0), int)
