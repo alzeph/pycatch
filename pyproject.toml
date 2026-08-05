@@ -1,6 +1,6 @@
 [project]
 name = "pycatch"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Gestion d'erreurs fluide pour Python, inspirée du type Result de Rust : Ok, Err et un décorateur catch pour éviter les try/except imbriqués."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -24,6 +24,9 @@ Repository = "https://github.com/alzeph/pycatch"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/pycatch/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pycatch"]
