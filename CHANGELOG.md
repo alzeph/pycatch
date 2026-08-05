@@ -11,7 +11,8 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 Première version publique (release candidate). Aucune version antérieure
 n'a été publiée sur PyPI — le développement `0.x` est resté interne à ce
-dépôt.
+dépôt. Distribuée sur PyPI sous le nom `pycatch-safe` (`pycatch` était déjà
+pris) ; l'import Python reste `import pycatch`.
 
 ### Added
 

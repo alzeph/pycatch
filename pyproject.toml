@@ -1,5 +1,5 @@
 [project]
-name = "pycatch"
+name = "pycatch-safe"
 dynamic = ["version"]
 description = "Gestion d'erreurs fluide pour Python, inspirée du type Result de Rust : Ok, Err et un décorateur catch pour éviter les try/except imbriqués."
 readme = "README.md"

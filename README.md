@@ -18,8 +18,15 @@ pattern matching natif de Python (`match`/`case`).
 
 ## Installation
 
+Le paquet est publié sur PyPI sous le nom `pycatch-safe` (le nom `pycatch`
+était déjà pris) — l'import Python, lui, reste `pycatch` :
+
 ```bash
-pip install pycatch
+pip install pycatch-safe
+```
+
+```python
+import pycatch
 ```
 
 ## Pourquoi

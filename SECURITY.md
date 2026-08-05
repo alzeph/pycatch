@@ -2,12 +2,14 @@
 
 ## Versions supportées
 
-`pycatch` est en phase `0.x` (alpha) : seule la dernière version publiée sur
-PyPI reçoit des correctifs de sécurité.
+`pycatch` (distribué sur PyPI sous le nom `pycatch-safe`) est en pré-version
+`1.0.0rc1` : seule la dernière version publiée reçoit des correctifs de
+sécurité.
 
-| Version | Supportée |
-| ------- | --------- |
-| 0.x.x   | ✅        |
+| Version    | Supportée |
+| ---------- | --------- |
+| 1.0.0rcN   | ✅        |
+| < 1.0.0rc1 | ❌        |
 
 ## Signaler une vulnérabilité
 

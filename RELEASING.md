@@ -2,20 +2,16 @@
 
 ## Configuration initiale de PyPI (une seule fois)
 
-`pycatch` publie via le *trusted publishing* de PyPI (OIDC) : aucun token
-long-lived à gérer, l'autorisation est liée à ce dépôt et à ce workflow
-GitHub Actions précis.
-
-> **Avant la première publication**, vérifier que le nom du package
-> (`pycatch` dans `pyproject.toml`) est bien disponible sur PyPI. Si ce
-> n'est pas le cas, le renommer *avant* de publier — un renommage après
-> coup casse tous les `pip install`/`import` existants.
+`pycatch-safe` (nom de distribution PyPI ; l'import Python reste `pycatch`,
+`pycatch` étant déjà pris sur PyPI par un projet sans rapport) publie via
+le *trusted publishing* de PyPI (OIDC) : aucun token long-lived à gérer,
+l'autorisation est liée à ce dépôt et à ce workflow GitHub Actions précis.
 
 1. Créer un compte PyPI si besoin.
 2. Sur <https://pypi.org/manage/account/publishing/>, ajouter un
    *pending trusted publisher* (le projet n'a pas besoin d'exister sur
    PyPI au préalable) :
-   - PyPI project name : le nom retenu dans `pyproject.toml`
+   - PyPI project name : `pycatch-safe`
    - Owner : `alzeph`
    - Repository name : `pycatch`
    - Workflow name : `publish.yml`
@@ -42,8 +38,8 @@ GitHub Actions précis.
    qui build et publie automatiquement sur PyPI.
    - Pour une pré-version (`rc`, `b`, `a`), cocher **"Set as a pre-release"**
      sur GitHub — PyPI la traitera comme une pré-version (non installée par
-     défaut par `pip install pycatch`, il faudra `pip install
-     pycatch --pre` ou fixer la version exacte).
+     défaut par `pip install pycatch-safe`, il faudra `pip install
+     pycatch-safe --pre` ou fixer la version exacte).
 
 ## Politique release candidate avant le 1.0.0 final
 

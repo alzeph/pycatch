@@ -348,7 +348,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pycatch"
+name = "pycatch-safe"
 source = { editable = "." }
 
 [package.dev-dependencies]
