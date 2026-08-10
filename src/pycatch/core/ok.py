@@ -56,5 +56,21 @@ class Ok[T]:
     def and_then[U, E](self, fn: Callable[[T], Result[U, E]]) -> Result[U, E]:
         return fn(self.value)
 
+    def or_else[E, F](self, fn: Callable[[E], Result[T, F]]) -> Ok[T]:
+        return self
+
+    def map_or[U](self, default: U, fn: Callable[[T], U]) -> U:
+        return fn(self.value)
+
+    def map_or_else[E, U](self, default_fn: Callable[[E], U], fn: Callable[[T], U]) -> U:
+        return fn(self.value)
+
+    def inspect(self, fn: Callable[[T], None]) -> Ok[T]:
+        fn(self.value)
+        return self
+
+    def inspect_err[E](self, fn: Callable[[E], None]) -> Ok[T]:
+        return self
+
     def __repr__(self) -> str:
         return f"Ok({self.value!r})"

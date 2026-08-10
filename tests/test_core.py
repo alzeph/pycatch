@@ -1,6 +1,6 @@
 import pytest
 
-from pycatch import Err, Ok, UnwrapError
+from pycatch import Err, Ok, UnwrapError, is_err, is_ok
 
 
 class TestOk:
@@ -39,6 +39,26 @@ class TestOk:
 
     def test_and_then(self) -> None:
         assert Ok(21).and_then(lambda v: Ok(v * 2)) == Ok(42)
+
+    def test_or_else_is_noop(self) -> None:
+        res = Ok(42)
+        assert res.or_else(lambda _e: Ok(0)) == res
+
+    def test_map_or(self) -> None:
+        assert Ok(21).map_or(0, lambda v: v * 2) == 42
+
+    def test_map_or_else(self) -> None:
+        assert Ok(21).map_or_else(lambda _e: 0, lambda v: v * 2) == 42
+
+    def test_inspect_calls_fn_and_returns_self(self) -> None:
+        seen = []
+        res = Ok(42)
+        assert res.inspect(seen.append) == res
+        assert seen == [42]
+
+    def test_inspect_err_is_noop(self) -> None:
+        res = Ok(42)
+        assert res.inspect_err(lambda _e: pytest.fail("ne devrait pas être appelé")) == res
 
     def test_repr(self) -> None:
         assert repr(Ok(42)) == "Ok(42)"
@@ -94,6 +114,26 @@ class TestErr:
         res: Err[str] = Err("boom")
         assert res.and_then(lambda v: Ok(v)) == res
 
+    def test_or_else(self) -> None:
+        assert Err("boom").or_else(lambda e: Ok(len(e))) == Ok(4)
+
+    def test_map_or(self) -> None:
+        res: Err[str] = Err("boom")
+        assert res.map_or(0, lambda v: v * 2) == 0
+
+    def test_map_or_else(self) -> None:
+        assert Err("boom").map_or_else(len, lambda v: v * 2) == 4
+
+    def test_inspect_is_noop(self) -> None:
+        res: Err[str] = Err("boom")
+        assert res.inspect(lambda _v: pytest.fail("ne devrait pas être appelé")) == res
+
+    def test_inspect_err_calls_fn_and_returns_self(self) -> None:
+        seen = []
+        res = Err("boom")
+        assert res.inspect_err(seen.append) == res
+        assert seen == ["boom"]
+
     def test_repr(self) -> None:
         assert repr(Err("boom")) == "Err('boom')"
 
@@ -128,3 +168,17 @@ class TestPatternMatching:
                 pytest.fail("ne devrait pas matcher ValueError")
             case Err(KeyError() as err):
                 assert err.args == ("age",)
+
+
+class TestNarrowing:
+    def test_is_ok_true_on_ok(self) -> None:
+        assert is_ok(Ok(42)) is True
+
+    def test_is_ok_false_on_err(self) -> None:
+        assert is_ok(Err("boom")) is False
+
+    def test_is_err_true_on_err(self) -> None:
+        assert is_err(Err("boom")) is True
+
+    def test_is_err_false_on_ok(self) -> None:
+        assert is_err(Ok(42)) is False
