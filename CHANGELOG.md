@@ -14,6 +14,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 - `is_ok(result)` / `is_err(result)` : fonctions de rétrécissement de type
   (`TypeIs`, [PEP 742](https://peps.python.org/pep-0742/)) pour narrower
   `Result[T, E]` en dehors du pattern matching.
+- `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1, traduction française).
+- Section « Par rapport aux alternatives » dans le README (`result`,
+  `returns`) et badge de couverture.
 
 ## [1.0.0rc1] - 2026-08-05
 

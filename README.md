@@ -1,6 +1,7 @@
 # pycatch
 
 [![CI](https://github.com/alzeph/pycatch/actions/workflows/ci.yml/badge.svg)](https://github.com/alzeph/pycatch/actions/workflows/ci.yml)
+[![Coverage: 100%](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://github.com/alzeph/pycatch/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](pyproject.toml)
 
@@ -152,6 +153,32 @@ la signature de la fonction décorée grâce à `ParamSpec`.
 demanderait de réécrire ces génériques avec `Generic[T]`/`TypeVar` — ce
 n'est pas prévu à court terme, mais une contribution est bienvenue si ce
 besoin se fait sentir.
+
+## Par rapport aux alternatives
+
+Deux bibliothèques Python occupent un terrain proche :
+
+- **[`result`](https://github.com/rustedpy/result)** propose une API très
+  proche (`Ok`, `Err`, `is_ok`/`is_err`, `map`, `unwrap_or`, pattern
+  matching...) et un décorateur équivalent (`as_result`). Le dépôt a été
+  **archivé par son auteur le 25 juin 2026** ("this project is no longer
+  maintained") : une base solide, mais qui ne recevra plus de correctifs.
+- **[`returns`](https://github.com/dry-python/returns)** est un écosystème
+  de programmation fonctionnelle bien plus large : `Result`, mais aussi
+  `Maybe`, `IO`/`IOResult`, `Future`/`FutureResult`, `RequiresContext`,
+  composition monadique, higher-kinded types émulés... Puissant pour
+  adopter la programmation fonctionnelle dans son ensemble, avec une
+  courbe d'apprentissage et une surface d'API nettement plus importantes
+  si le seul besoin est de remplacer des `try/except`.
+
+`pycatch` vise un périmètre plus restreint et assumé : seulement `Result`
+et un décorateur `catch`, activement maintenu, ciblant explicitement
+Python 3.12+ pour s'appuyer sur les génériques natifs du langage
+(PEP 695) plutôt que de réimplémenter du typage générique compatible avec
+une plage de versions plus large.
+
+*(Comparaison établie en août 2026 — vérifiez l'état actuel de ces projets
+avant de faire votre choix.)*
 
 ## Développement
 
