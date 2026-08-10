@@ -3,6 +3,9 @@
 Merci de vouloir contribuer ! Ce guide décrit comment mettre en place
 l'environnement de développement et les attentes pour une pull request.
 
+En participant à ce projet, vous acceptez de respecter le
+[Code de conduite](CODE_OF_CONDUCT.md).
+
 ## Mise en place
 
 Le projet utilise [uv](https://docs.astral.sh/uv/) pour la gestion des
