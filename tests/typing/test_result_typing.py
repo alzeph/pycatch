@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from typing import assert_type
 
-from pycatch import Err, Ok, Result, catch
+from pycatch import Err, Ok, Result, catch, is_err, is_ok
 
 
 def test_ok_map_preserves_success_type() -> None:
@@ -78,3 +78,19 @@ def test_catch_on_instance_method_binds_self() -> None:
             return int(value)
 
     assert_type(Parser().parse("1"), Result[int, ValueError])
+
+
+def test_is_ok_narrows_to_ok() -> None:
+    res: Result[int, str] = Ok(1)
+    if is_ok(res):
+        assert_type(res, Ok[int])
+    else:
+        assert_type(res, Err[str])
+
+
+def test_is_err_narrows_to_err() -> None:
+    res: Result[int, str] = Err("boom")
+    if is_err(res):
+        assert_type(res, Err[str])
+    else:
+        assert_type(res, Ok[int])

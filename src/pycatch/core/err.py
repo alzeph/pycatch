@@ -70,5 +70,21 @@ class Err[E]:
     def and_then[T, U, F](self, fn: Callable[[T], Result[U, F]]) -> Err[E]:
         return self
 
+    def or_else[T, F](self, fn: Callable[[E], Result[T, F]]) -> Result[T, F]:
+        return fn(self.error)
+
+    def map_or[T, U](self, default: U, fn: Callable[[T], U]) -> U:
+        return default
+
+    def map_or_else[T, U](self, default_fn: Callable[[E], U], fn: Callable[[T], U]) -> U:
+        return default_fn(self.error)
+
+    def inspect[T](self, fn: Callable[[T], None]) -> Err[E]:
+        return self
+
+    def inspect_err(self, fn: Callable[[E], None]) -> Err[E]:
+        fn(self.error)
+        return self
+
     def __repr__(self) -> str:
         return f"Err({self.error!r})"

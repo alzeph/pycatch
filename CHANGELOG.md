@@ -7,6 +7,14 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ## [Unreleased]
 
+### Added
+
+- API `Ok`/`Err` : `or_else`, `map_or`, `map_or_else`, `inspect`,
+  `inspect_err`.
+- `is_ok(result)` / `is_err(result)` : fonctions de rétrécissement de type
+  (`TypeIs`, [PEP 742](https://peps.python.org/pep-0742/)) pour narrower
+  `Result[T, E]` en dehors du pattern matching.
+
 ## [1.0.0rc1] - 2026-08-05
 
 Première version publique (release candidate). Aucune version antérieure

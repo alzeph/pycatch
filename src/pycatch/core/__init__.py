@@ -17,6 +17,6 @@ Chaque responsabilité vit dans son propre module :
 from .err import Err
 from .errors import UnwrapError
 from .ok import Ok
-from .result import Result
+from .result import Result, is_err, is_ok
 
-__all__ = ["Err", "Ok", "Result", "UnwrapError"]
+__all__ = ["Err", "Ok", "Result", "UnwrapError", "is_err", "is_ok"]

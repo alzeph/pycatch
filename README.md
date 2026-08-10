@@ -107,7 +107,24 @@ match result:
 | `unwrap_or_raise()` | Valeur, ou relève l'exception d'origine contenue dans `Err` — pont vers du code legacy basé sur des exceptions |
 | `map(fn)` | Transforme la valeur si `Ok`, no-op si `Err` |
 | `map_err(fn)` | Transforme l'erreur si `Err`, no-op si `Ok` |
+| `map_or(default, fn)` | `fn(valeur)` si `Ok`, `default` si `Err` |
+| `map_or_else(default_fn, fn)` | `fn(valeur)` si `Ok`, `default_fn(erreur)` si `Err` |
 | `and_then(fn)` | Chaîne une opération qui retourne elle-même un `Result` — évite d'imbriquer les `try/except` |
+| `or_else(fn)` | Chaîne un `Result` de repli sur l'erreur si `Err`, no-op si `Ok` |
+| `inspect(fn)` / `inspect_err(fn)` | Effet de bord (logging...) sur la valeur/l'erreur sans casser la chaîne fluide |
+
+`pycatch` expose aussi `is_ok(result)` / `is_err(result)`, deux fonctions
+utilisant `TypeIs` ([PEP 742](https://peps.python.org/pep-0742/)) pour
+rétrécir le type de `result` en dehors du pattern matching :
+
+```python
+from pycatch import Result, is_ok
+
+def describe(res: Result[int, str]) -> str:
+    if is_ok(res):
+        return f"succès : {res.value}"  # res est ici typé Ok[int]
+    return f"échec : {res.error}"       # res est ici typé Err[str]
+```
 
 ```python
 result = (
